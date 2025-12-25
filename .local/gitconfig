@@ -1,0 +1,27 @@
+[color]
+    ui = false
+
+[diff]
+    tool = ediff
+    guitool = ediff
+
+[difftool "ediff"]
+    cmd = ediff.sh $LOCAL $REMOTE $MERGED
+
+[merge]
+    tool = ediff
+    defaultToUpstream = true
+
+[mergetool "ediff"]
+    cmd = ediff.sh $LOCAL $REMOTE $MERGED $BASE
+    trustExitCode = true
+
+[alias]
+    st = status
+    ft = fetch --all -p
+
+[pull]
+    ff = only
+
+[push]
+    default = upstream

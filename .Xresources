@@ -1,0 +1,66 @@
+! See wiki.archlinux.org/index.php/Xterm
+
+! - per-user fonts can be installed at ~/.local/share/fonts
+! - use fc-cache -f to refresh font cache if new fonts are installed
+! - use fc-list to view fonts
+! - fc-list :scalable=true:spacing=mono: family to faceName!
+XTerm*faceName:        DejaVu Sans Mono
+XTerm.termName:        xterm-256color
+XTerm*faceSize:        14
+XTerm.vt100.geometry:  120x30
+XTerm*font:            -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
+XTerm*boldFont:        -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
+
+! Force UTF-8 locale
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
+
+! Make "Alt" key send ^[ (escape) instead of modifier for 8-bit
+XTerm.vt100.metaSendsEscape: true
+
+! Ctrl-H/backspace behavior for emacs
+XTerm.vt100.backarrowKey: false
+XTerm.ttyModes: erase ^?
+
+XTerm.vt100.scaleHeight: 1.01
+
+#ifdef COLOR
+XTerm.vt100.background: rgb:40/44/52
+XTerm.vt100.foreground: #f0f0f0
+#endif
+
+! Exceed OnDemand defaults to PRIMARY buffer for copy/paste
+XTerm.vt100.translations: #override              \n\
+    Ctrl Shift <Key>C: copy-selection(PRIMARY)   \n\
+    Ctrl Shift <Key>V: insert-selection(PRIMARY)
+
+! The Athena Widgets provided by Data General have 2 look-and-feels
+! to choose from (athena and motif).  The following resource sets
+! the look-and-feel:
+*lookAndFeel: motif
+
+
+! The following sets the customization resource to get
+! special app-defaults, if they exist:
+#ifdef COLOR
+*Customization: -color
+#else
+*Customization: -mono
+#endif
+
+! BCC unamanged machines seem to use urxvt terminal instead of xterm.
+! If these settings are not getting picked up on BCC, try installing
+! xrdb and urxvt. Additionally, ensure that ~/.Xdefaults exists as a symlink to
+! ~/.Xresources
+! emacs -nw does not recognize the rxvt unicode term name
+Rxvt*termName:   xterm-256color
+Rxvt*background: rgb:40/44/52
+Rxvt*foreground: #f0f0f0
+Rxvt*geometry:   80x30
+Rxvt*font:       xft:DejaVu Sans Mono:size=14
+Rxvt*boldFont:   xft:DejaVu Sans Mono:size=14
+
+! Change color prefs across all terminals
+! blue
+*color4:  #46aede
+*color12: #46aede
