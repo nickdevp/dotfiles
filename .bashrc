@@ -20,7 +20,8 @@ init_locale()
     typeset locs_r=('en_US.UTF-?8' 'C.UTF-?8')
     for loc_r in ${locs_r[@]}; do
         typeset loc=$(locale -a | grep -E -i "${loc_r}" | head -1)
-        if [[ "${loc,,}" =~ utf-?8 ]]; then
+        typeset loc_lcase="$(echo "${loc}" | tr '[:upper:]' '[:lower:]')"
+        if [[ "${loc_lcase}" =~ utf-?8 ]]; then
             export LANG="${loc}"
             return
         fi
